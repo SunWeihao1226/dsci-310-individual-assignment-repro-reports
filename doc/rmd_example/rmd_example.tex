@@ -1,0 +1,166 @@
+\documentclass[
+]{jss}
+
+%% recommended packages
+\usepackage{orcidlink,thumbpdf,lmodern}
+
+\usepackage[utf8]{inputenc}
+
+\author{
+\\
+}
+\title{}
+
+\Plainauthor{}
+
+
+\Abstract{
+
+}
+
+
+%% publication information
+%% \Volume{50}
+%% \Issue{9}
+%% \Month{June}
+%% \Year{2012}
+%% \Submitdate{}
+%% \Acceptdate{2012-06-04}
+
+\Address{
+  }
+
+
+% tightlist command for lists without linebreak
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+
+
+
+\begin{document}
+
+
+
+\begin{CodeChunk}
+\begin{CodeOutput}
+-- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+\end{CodeOutput}
+\begin{CodeOutput}
+v ggplot2 3.3.5     v purrr   0.3.4
+v tibble  3.1.6     v dplyr   1.0.7
+v tidyr   1.1.4     v stringr 1.4.0
+v readr   2.1.1     v forcats 0.5.1
+\end{CodeOutput}
+\begin{CodeOutput}
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+\end{CodeOutput}
+\end{CodeChunk}
+
+\hypertarget{aim}{%
+\section{Aim}\label{aim}}
+
+This project explores the historical population of horses in Canada between 1906 and 1972 for each province.
+
+\hypertarget{data}{%
+\section{Data}\label{data}}
+
+Horse population data were sourced from the \href{http://open.canada.ca/en/open-data}{Government of Canada's Open Data website} (Government of Canada, 2017a and Government of Canada, 2017b).
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+The R programming language (R Core Team, 2019) and the following R packages were used to perform the analysis: knitr (Xie 2014), tidyverse (Wickham 2017), and bookdown (Xie 2016). \emph{Note: this report is adapted from (Timbers 2020).}
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+\begin{CodeChunk}
+
+
+\begin{center}\includegraphics[width=0.5\linewidth]{../../results/horse_pops_plot} \end{center}
+
+\end{CodeChunk}
+
+Figure 1: Horse populations for all provinces in Canada from 1906 - 1972
+
+We can see from Figure 1 that Ontario, Saskatchewan and Alberta have had the highest horse populations in Canada. All provinces have had a decline in horse populations since 1940. This is likely due to the rebound of the Canadian automotive industry after the Great Depression and the Second World War. An interesting follow-up visualisation would be car sales per year for each Province over the time period visualised above to further support this hypothesis.
+
+Suppose we were interested in looking in more closely at the province with the highest spread (in terms of standard deviation) of horse populations. We present the standard deviations here:
+
+\begin{CodeChunk}
+\begin{CodeOutput}
+Rows: 9 Columns: 2
+\end{CodeOutput}
+\begin{CodeOutput}
+-- Column specification --------------------------------------------------------
+Delimiter: ","
+chr (1): Province
+dbl (1): Std
+\end{CodeOutput}
+\begin{CodeOutput}
+
+i Use `spec()` to retrieve the full column specification for this data.
+i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{CodeOutput}
+\end{CodeChunk}
+
+\begin{CodeChunk}
+\begin{table}
+
+\caption{(\#tab:unnamed-chunk-4)Table caption.}
+\centering
+\begin{tabular}[t]{l|r}
+\hline
+Province & Std\\
+\hline
+Saskatchewan & 377265.58\\
+\hline
+Ontario & 266435.32\\
+\hline
+Alberta & 266063.19\\
+\hline
+Manitoba & 122403.87\\
+\hline
+Quebec & 111411.10\\
+\hline
+New Brunswick & 22019.49\\
+\hline
+Nova Scotia & 19879.25\\
+\hline
+British Columbia & 14945.66\\
+\hline
+P.E.I. & 11355.75\\
+\hline
+\end{tabular}
+\end{table}
+
+\end{CodeChunk}
+
+Note that we define standard deviation (of a sample) as
+
+\[s = sqrt( sum_{i = 1}^n(x_i - \bar{x}) / (n-1))\]
+
+Additionally, note that in Table 1 we consider the sample standard deviation of the number of horses during the same time span as Figure1.
+
+\begin{CodeChunk}
+
+
+\begin{center}\includegraphics[width=0.5\linewidth]{../../results/horse_pop_plot_largest_sd} \end{center}
+
+\end{CodeChunk}
+
+Figure 2: Horse populations for the province with the largest standard deviation
+
+In Figure 2 we zoom in and look at the province of \texttt{largest\_sd}, which had the largest spread of values in terms of standard deviation.
+
+\renewcommand\refname{References}
+\bibliography{references.bib}
+
+
+
+\end{document}
